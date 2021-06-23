@@ -157,20 +157,6 @@ def ej3():
       
 
 
-        
-
-
-    #diccionario_estadisticas={}
-    #for x in range(10):
-    #    diccionario_estadisticas['userId = ' + str(x + 1)] = 0   
-    #print(diccionario_estadisticas)    
-
-
-
-            
-
-
-
 
     
 
