@@ -1,0 +1,15 @@
+{
+    "nombre": "Marcos",
+    "apellido": "ludue\u00f1a",
+    "dni": 34559619,
+    "Prenda": [
+        {
+            "tipo": "pantalon",
+            "cantidad": 5
+        },
+        {
+            "tipo": "remera",
+            "cantidad": 6
+        }
+    ]
+}

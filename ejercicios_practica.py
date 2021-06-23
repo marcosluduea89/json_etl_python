@@ -14,7 +14,12 @@ adquiridos durante la clase
 __author__ = "Inove Coding School"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
+import json
+from typing import Counter
+import requests
+from requests.api import request
 
+from requests.models import Response
 
 def ej1():
     # JSON Serialize
@@ -26,7 +31,40 @@ def ej1():
     # nombre, apellido, DNI
     # Dentro debe tener una lista donde coloque cantidad de elementos de vestir
     # ejemplo -->
-    #  { "prenda": "zapatilla", "cantidad": 4 }
+
+    json_persona = {
+                    "nombre":"Marcos",
+                    "apellido":"ludueña",
+                    "dni": 34559619,
+                    "Prenda":[
+                        {
+                            "tipo":"pantalon",
+                            "cantidad":5
+                            
+                        },
+                        {
+                            "tipo":"remera",
+                            "cantidad":6
+                        },
+                        {
+                            "tipo":"Medias",
+                            "cantidad":5
+                        },
+                        {
+                            "tipo":"camperas",
+                            "cantidad":8
+                        }
+                    ]
+
+    }
+
+      
+    with open ('json_persona.json','w') as jsonfile:
+        
+        json.dump(json_persona,jsonfile, indent=4)
+    print(json_persona)
+
+   
     #  { "prenda": "remeras", "cantidad": 12 }
     # Que su lista de prendas dentro del JSON tenga al menos 2 prendas
 
@@ -36,20 +74,26 @@ def ej1():
     # un archivo que usted defina
 
     # Observe el archivo y verifique que se almaceno lo deseado
-    pass
+    
 
 
 def ej2():
     # JSON Deserialize
     # Basado en el ejercicio anterior debe abrir y leer el contenido
     # del archivo y guardarlo en un objeto JSON utilizando el método
-    # load()
+    with open ('json_persona.json','r') as jsonfile:
+        data= json.load(jsonfile)
+    
+    json_strings = json.dumps(data,indent=4)
+    print (json_strings)
+    
+    
 
     # Luego debe convertir ese JSON data en json_string utilizando
     # el método "dumps" y finalmente imprimir en pantalla el resultado
     # Recuerde utilizar indent=4 para poder observar mejor el resultado
     # en pantalla y comparelo contra el JSON que generó en el ej1
-    pass
+    
 
 
 def ej3():
@@ -79,10 +123,72 @@ def ej3():
     # y verifique si los primeros usuarios (mirando la página a ojo)
     # los datos recolectados son correctos.
 
+    response = requests.get(url)
+    data = response.json()
+    
+
+               
+    usuarios_completed = {}
+    for i in range(len(data)):
+        variable = data[i]
+        userid= variable['userId']
+        completed = variable['completed']
+
+        if (userid in data) == False :
+            usuarios_completed['userId ='+ str(userid)]  =0
+        if (completed in data) ==True:
+                usuarios_completed['userId ='+ str(userid)]  +=1
+            
+
+
+
+
+        
+        #for variable in data:
+        #    if variable.get('completed') == usuarios_completed.get:
+        
+        #        usuarios_completed['userId ='+ str()]  +=1
+                
+
+    print(usuarios_completed) 
+
+
+                
+      
+
+
+        
+
+
+    #diccionario_estadisticas={}
+    #for x in range(10):
+    #    diccionario_estadisticas['userId = ' + str(x + 1)] = 0   
+    #print(diccionario_estadisticas)    
+
+
+
+            
+
+
+
+
+    
+
+            
+            
+
+
+            
+
+           
+
+
+
+
 
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
-    ej1()
-    # ej2()
-    # ej3()
+    #ej1()
+    #ej2()
+    ej3()

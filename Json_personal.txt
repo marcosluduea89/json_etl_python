@@ -1,0 +1,9 @@
+[
+    {
+        "nombre": "Marcos",
+        "apellido": "ludue\u00f1a",
+        "dni": 34559619,
+        "Prenda": [
+            {
+                "tipo": {
+                    "remera": 
