@@ -18,8 +18,12 @@ import json
 from typing import Counter
 import requests
 from requests.api import request
-
 from requests.models import Response
+import matplotlib.pyplot as plt
+import matplotlib.axes
+import numpy
+
+
 
 def ej1():
     # JSON Serialize
@@ -124,50 +128,39 @@ def ej3():
     # los datos recolectados son correctos.
 
     response = requests.get(url)
-    data = response.json()
+    users = response.json()
     
 
-               
-    usuarios_completed = {}
-    for i in range(len(data)):
-        variable = data[i]
-        userid= variable['userId']
-        completed = variable['completed']
-
-        if (userid in data) == False :
-            usuarios_completed['userId ='+ str(userid)]  =0
-        if (completed in data) ==True:
-                usuarios_completed['userId ='+ str(userid)]  +=1
-            
+    usuarios_id= []
+    titulos ={}
 
 
+    for user in users:
+        userId = user.get('userId')
+        if userId not in usuarios_id:
+            usuarios_id.append(userId)
+            if user.get('completed'):
+                titulos[f'userId_{userId}']=1
 
-
-        
-        #for variable in data:
-        #    if variable.get('completed') == usuarios_completed.get:
-        
-        #        usuarios_completed['userId ='+ str()]  +=1
-                
-
-    print(usuarios_completed) 
-
-
-                
-      
-
+            else:
+                titulos[f'userId_{userId}']=1
+        elif user.get('completed'):
+            titulos[f'userId_{userId}'] +=1
+    
+    print(titulos)
 
 
     
 
-            
-            
 
+    fig = plt.figure()
+    fig.suptitle('Usuarios que completraon los titulos',fontsize = 16)
+    ax = fig.add_subplot()
 
-            
-
-           
-
+    ax.pie(titulos.values(),labels = titulos.keys(), autopct='%1.1f%%',shadow = True,startangle =  90 )
+    ax.legend()
+    ax.axis ('equal')
+    plt.show()
 
 
 

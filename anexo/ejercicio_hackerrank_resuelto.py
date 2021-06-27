@@ -32,8 +32,10 @@ def transform(dataset):
 
         if (userid in dataset ) == False:
             data[userid] = 0
-
+        
         data[userid] =  data[userid] + amount
+
+
 
     # Armar la lista de usuarios y debitos
     data_list = [[key, value] for key,value in data.items()]
